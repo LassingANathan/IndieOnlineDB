@@ -1,0 +1,17 @@
+{% from "macros/nav.html" import navbar %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/customers.css') }}">
+        <title>Customers Page</title>
+    </head>
+    <body>
+        {{ navbar() }}
+
+        <h1>Customers:</h1>
+        {% for customerInfo in results %}
+            <p>{{customerInfo}}</p>
+        {% endfor %}
+    </body>
+</html>
