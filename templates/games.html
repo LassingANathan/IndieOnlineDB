@@ -24,6 +24,56 @@
             </tr>
         {% endfor %}
     </table>
+
+    <!-- INSERT form -->
+    <form>
+        <input type="submit" value="INSERT">
+
+        <label for="insert_Name">Name:</label>
+        <input type="text" id="insert_Name" placeholder="Name...">
+
+        <label for="insertPrice">Price:</label>
+        <input type="text" id="insert_Price" placeholder="Price...">
+    </form>
+
+    <br>
+
+    <!-- UPDATE form-->
+    <form>
+        <input type="submit" value="UPDATE">
+
+        <label for="update_GameID">GameID:</label>
+        <select id="update_GameID">
+            {% for gameInfo in results %}
+                <option value={gameInfo['gameID']}}>{{gameInfo['gameID']}}</option>
+            {% endfor %}
+        </select>
+
+        <label for="update_Attributes">Attribute:</label>
+        <select id="update_Attributes">
+            {% for attribute in results[0].keys() %}
+                {% if not loop.first %} {# Skip the first attribute (gameID)#}
+                    <option value={{attribute}}>{{attribute}}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+
+        <label for="update_NewValue">New Value:</label>
+        <input type="text" id="update_NewValue" placeholder="New Value...">
+    </form>
+
+    <br>
+
+    <!-- DELETE form-->
+    <form>
+        <input type="submit" value="DELETE">
+
+        <select id="delete_GameID">
+            {% for gameInfo in results %}
+                <option value={gameInfo['gameID']}}>{{gameInfo['gameID']}}</option>
+            {% endfor %}
+        </select>
+    </form>
     
 </body>
 </html>
