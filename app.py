@@ -48,6 +48,50 @@ def customers():
     # Render the Customers page, passing the query results
     return render_template('customers.html', results=results)
 
+@app.route('/reviews')
+def reviews():
+    # Create DB cursor
+    cur = mysql.connection.cursor()
+    
+    # Declare and execute query
+    query1 = 'SELECT * FROM Reviews;'
+    cur.execute(query1)
+    
+    # Retrieve results of query from the cursor
+    results = cur.fetchall()
+
+    # Render the reviews page, passing the query results
+    return render_template('reviews.html', results=results)
+
+@app.route('/saleOrders')
+def saleOrders():
+    # Create DB cursor
+    cur = mysql.connection.cursor()
+    
+    # Declare and execute query
+    query1 = 'SELECT * FROM SaleOrders;'
+    cur.execute(query1)
+    
+    # Retrieve results of query from the cursor
+    results = cur.fetchall()
+
+    # Render the saleOrders page, passing the query results
+    return render_template('saleOrders.html', results=results)
+
+@app.route('/gameOrders')
+def gameOrders():
+    # Create DB cursor
+    cur = mysql.connection.cursor()
+    
+    # Declare and execute query
+    query1 = 'SELECT * FROM GameOrders;'
+    cur.execute(query1)
+    
+    # Retrieve results of query from the cursor
+    results = cur.fetchall()
+
+    # Render the gameOrders page, passing the query results
+    return render_template('gameOrders.html', results=results)
 
 # Listener
 if __name__ == "__main__":
