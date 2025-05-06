@@ -10,8 +10,21 @@
         {{ navbar() }}
 
         <h1>Customers:</h1>
-        {% for customerInfo in results %}
-            <p>{{customerInfo}}</p>
-        {% endfor %}
+        <table>
+            <tr>
+                <th>CustomerID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+            {% for customerInfo in results %}
+                <tr>
+                    <td>{{customerInfo['customerID']}}</td>
+                    <td>{{customerInfo['first_name']}}</td>
+                    <td>{{customerInfo['last_name']}}</td>
+                    <td>{{customerInfo['email']}}</td>
+                </tr>
+            {% endfor %}
+        </table>
     </body>
 </html>

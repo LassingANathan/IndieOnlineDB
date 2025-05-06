@@ -7,3 +7,7 @@ head {
 body {
     color: orange
 }
+table, th, td {
+    color:orange;
+    border: 1px solid;
+}

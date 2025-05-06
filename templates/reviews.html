@@ -10,8 +10,23 @@
         {{ navbar() }}
 
         <h1>Reviews:</h1>
-        {% for reviewInfo in results %}
-            <p>{{reviewInfo}}</p>
-        {% endfor %}
+        <table>
+            <tr>
+                <th>ReviewID</th>
+                <th>GameID</th>
+                <th>CustomerID</th>
+                <th>StarRating</th>
+                <th>Content</th>
+            </tr>
+            {% for reviewInfo in results %}
+                <tr>
+                    <td>{{reviewInfo['reviewID']}}</td>
+                    <td>{{reviewInfo['gameID']}}</td>
+                    <td>{{reviewInfo['customerID']}}</td>
+                    <td>{{reviewInfo['starRating']}}</td>
+                    <td>{{reviewInfo['content']}}</td>
+                </tr>
+            {% endfor %}
+        </table>
     </body>
 </html>

@@ -10,9 +10,20 @@
     {{ navbar() }}
 
     <h1>Games:</h1>
-    {% for gameInfo in results %}
-        <p>{{gameInfo}}</p>
-    {% endfor %}
+    <table>
+        <tr>
+            <th>GameID</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        {% for gameInfo in results %}
+            <tr>
+                <td>{{gameInfo['gameID']}}</td>
+                <td>{{gameInfo['name']}}</td>
+                <td>{{gameInfo['price']}}</td>
+            </tr>
+        {% endfor %}
+    </table>
     
 </body>
 </html>

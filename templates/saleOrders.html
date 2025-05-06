@@ -10,8 +10,19 @@
         {{ navbar() }}
 
         <h1>SaleOrders:</h1>
-        {% for saleOrderInfo in results %}
-            <p>{{saleOrderInfo}}</p>
-        {% endfor %}
+        <table>
+            <tr>
+                <th>SaleOrderID</th>
+                <th>CustomerID</th>
+                <th>Date</th>
+            </tr>
+            {% for saleOrderInfo in results %}
+                <tr>
+                    <td>{{saleOrderInfo['saleOrderID']}}</td>
+                    <td>{{saleOrderInfo['customerID']}}</td>
+                    <td>{{saleOrderInfo['date']}}</td>
+                </tr>
+            {% endfor %}
+        </table>
     </body>
 </html>
