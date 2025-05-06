@@ -63,8 +63,8 @@ def reviews():
     # Render the reviews page, passing the query results
     return render_template('reviews.html', results=results)
 
-@app.route('/saleOrders')
-def saleOrders():
+@app.route('/orders')
+def orders():
     # Create DB cursor
     cur = mysql.connection.cursor()
     
@@ -73,10 +73,16 @@ def saleOrders():
     cur.execute(query1)
     
     # Retrieve results of query from the cursor
-    results = cur.fetchall()
+    saleOrdersResults = cur.fetchall()
+        
+    # Declare and execute query
+    query2 = 'SELECT * FROM GameOrders;'
+    cur.execute(query2)
+    
+    gameOrdersResults = cur.fetchall()
 
-    # Render the saleOrders page, passing the query results
-    return render_template('saleOrders.html', results=results)
+    # Render the orders page, passing the query results
+    return render_template('orders.html', saleOrdersResults=saleOrdersResults, gameOrdersResults=gameOrdersResults)
 
 @app.route('/gameOrders')
 def gameOrders():

@@ -1,0 +1,50 @@
+{% from "macros/nav.html" import navbar %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/orders.css') }}">
+        <title>Orders Page</title>
+    </head>
+    <body>
+        {{ navbar() }}
+
+        <div class="column">
+            <h1>SaleOrders:</h1>
+            <table>
+                <tr>
+                    <th>SaleOrderID</th>
+                    <th>CustomerID</th>
+                    <th>Date</th>
+                </tr>
+                {% for saleOrderInfo in saleOrdersResults %}
+                    <tr>
+                        <td>{{saleOrderInfo['saleOrderID']}}</td>
+                        <td>{{saleOrderInfo['customerID']}}</td>
+                        <td>{{saleOrderInfo['date']}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        
+        <div class="column">
+            <h1>GameOrders:</h1>
+            <table>
+                <tr>
+                    <th>GameOrderID</th>
+                    <th>GameID</th>
+                    <th>SaleOrderID</th>
+                    <th>Discount</th>
+                </tr>
+                {% for gameOrderInfo in gameOrdersResults %}
+                    <tr>
+                        <td>{{gameOrderInfo['gameOrderID']}}</td>
+                        <td>{{gameOrderInfo['gameID']}}</td>
+                        <td>{{gameOrderInfo['saleOrderID']}}</td>
+                        <td>{{gameOrderInfo['discount']}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </body>
+</html>
