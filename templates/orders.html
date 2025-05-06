@@ -25,6 +25,37 @@
                     </tr>
                 {% endfor %}
             </table>
+
+            <br>
+
+            <!-- INSERT form -->
+            <form>
+                <input type="submit" value="INSERT">
+
+                <label for="insert_CustomerID">CustomerID:</label>
+                <input type="text" id="insert_CustomerID" placeholder="CustomerID...">
+
+                <label for="insert_Date">Date:</label>
+                <input type="text" id="insert_Date" placeholder="Date... YYYY/MM/DD">
+            </form>
+
+            <br>
+
+             <!-- UPDATE form-->
+            <form>
+                <input type="submit" value="UPDATE">
+
+                <label for="update_SaleOrderID">SaleOrderID:</label>
+                <select id="update_SaleOrderID">
+                    {% for saleOrderInfo in saleOrdersResults %}
+                        <option value={saleOrderInfo['saleOrderID']}}>{{saleOrderInfo['saleOrderID']}}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="update_NewCustomerID">New CustomerID:</label>
+                <input type="text" id="update_NewCustomerID" placeholder="New CustomerID...">
+            </form>
+
         </div>
         
         <div class="column">
@@ -45,6 +76,23 @@
                     </tr>
                 {% endfor %}
             </table>
+
+            <br>
+
+            <!-- INSERT form -->
+            <form>
+                <input type="submit" value="INSERT">
+
+                <label for="insert_GameID">GameID:</label>
+                <input type="text" id="insert_GameID" placeholder="GameID...">
+
+                <label for="insert_SaleOrderID">SaleOrderID:</label>
+                <input type="text" id="insert_SaleOrderID" placeholder="SaleOrderID...">
+
+                <label for="insert_Discount">Discount:</label>
+                <input type="text" id="insert_Discount" placeholder="Discount...">
+            </form>
+
         </div>
     </body>
 </html>
