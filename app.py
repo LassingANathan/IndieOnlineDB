@@ -81,7 +81,9 @@ def orders():
     saleOrdersResults = cur.fetchall()
         
     # Declare and execute query
-    query2 = 'SELECT * FROM GameOrders;'
+    query2 = """SELECT GameOrders.gameOrderID, Games.name, GameOrders.saleOrderID, GameOrders.discount
+            FROM GameOrders
+            JOIN Games ON GameOrders.GameID = Games.GameID;"""
     cur.execute(query2)
     
     gameOrdersResults = cur.fetchall()

@@ -63,15 +63,15 @@
             <table>
                 <tr>
                     <th>GameOrderID</th>
-                    <th>GameID</th>
                     <th>SaleOrderID</th>
+                    <th>Game</th>
                     <th>Discount</th>
                 </tr>
                 {% for gameOrderInfo in gameOrdersResults %}
                     <tr>
                         <td>{{gameOrderInfo['gameOrderID']}}</td>
-                        <td>{{gameOrderInfo['gameID']}}</td>
                         <td>{{gameOrderInfo['saleOrderID']}}</td>
+                        <td>{{gameOrderInfo['name']}}</td>
                         <td>{{gameOrderInfo['discount']}}</td>
                     </tr>
                 {% endfor %}
