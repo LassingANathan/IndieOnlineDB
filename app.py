@@ -84,21 +84,6 @@ def orders():
     # Render the orders page, passing the query results
     return render_template('orders.html', saleOrdersResults=saleOrdersResults, gameOrdersResults=gameOrdersResults)
 
-@app.route('/gameOrders')
-def gameOrders():
-    # Create DB cursor
-    cur = mysql.connection.cursor()
-    
-    # Declare and execute query
-    query1 = 'SELECT * FROM GameOrders;'
-    cur.execute(query1)
-    
-    # Retrieve results of query from the cursor
-    results = cur.fetchall()
-
-    # Render the gameOrders page, passing the query results
-    return render_template('gameOrders.html', results=results)
-
 # Listener
 if __name__ == "__main__":
 
