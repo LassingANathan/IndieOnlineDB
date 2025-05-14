@@ -97,9 +97,17 @@ def orders():
     cur.execute(query3)
     
     gameOrdersResults = cur.fetchall()
+    
+    # Declare and execute query
+    query4 = """SELECT GameID, name
+            FROM Games
+            ORDER BY name;"""
+    cur.execute(query4)
+    
+    orderedGames = cur.fetchall()
 
     # Render the orders page, passing the query results
-    return render_template('orders.html', saleOrdersResults=saleOrdersResults, orderedCustomers=orderedCustomers, gameOrdersResults=gameOrdersResults)
+    return render_template('orders.html', saleOrdersResults=saleOrdersResults, orderedCustomers=orderedCustomers, gameOrdersResults=gameOrdersResults, orderedGames=orderedGames)
 
 # Listener
 if __name__ == "__main__":
