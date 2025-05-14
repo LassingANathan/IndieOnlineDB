@@ -81,6 +81,30 @@
                 <input type="text" id="insert_Discount" placeholder="Discount...">
             </form>
 
+            <br>
+
+            <!-- UPDATE form-->
+            <form>
+                <input type="submit" value="UPDATE">
+
+                <label for="update_GameOrderID">GameOrderID:</label>
+                <select id="update_GameOrderID">
+                    {% for gameOrderInfo in gameOrdersResults %}
+                        <option value={gameOrderInfo['gameOrderID']}}>{{gameOrderInfo['gameOrderID']}}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="update_NewGameID">New Game:</label>
+                <select id="update_NewGameID">
+                    {% for gameInfo in orderedGames %}
+                        <option value={gameInfo['gameID']}}>{{gameInfo['name']}}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="update_NewDiscount">New Discount:</label>
+                <input type="text" id="update_NewDiscount" placeholder="New Discount...">
+            </form>
+
         </div>
     </body>
 </html>
