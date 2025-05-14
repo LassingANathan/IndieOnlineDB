@@ -72,7 +72,9 @@ def orders():
     cur = mysql.connection.cursor()
     
     # Declare and execute query
-    query1 = 'SELECT * FROM SaleOrders;'
+    query1 = """SELECT SaleOrders.saleOrderID, Customers.first_name, Customers.last_name, SaleOrders.date
+            FROM SaleOrders
+            JOIN Customers ON SaleOrders.CustomerID = Customers.CustomerID;"""
     cur.execute(query1)
     
     # Retrieve results of query from the cursor

@@ -14,13 +14,13 @@
             <table>
                 <tr>
                     <th>SaleOrderID</th>
-                    <th>CustomerID</th>
+                    <th>Customer</th>
                     <th>Date</th>
                 </tr>
                 {% for saleOrderInfo in saleOrdersResults %}
                     <tr>
                         <td>{{saleOrderInfo['saleOrderID']}}</td>
-                        <td>{{saleOrderInfo['customerID']}}</td>
+                        <td>{{saleOrderInfo['first_name'] + ' ' + saleOrderInfo['last_name']}}</td>
                         <td>{{saleOrderInfo['date']}}</td>
                     </tr>
                 {% endfor %}
