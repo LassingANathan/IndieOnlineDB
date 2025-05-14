@@ -32,8 +32,11 @@
             <form>
                 <input type="submit" value="INSERT">
 
-                <label for="insert_CustomerID">CustomerID:</label>
-                <input type="text" id="insert_CustomerID" placeholder="CustomerID...">
+                <select id="insert_CustomerID">
+                    {% for customerInfo in orderedCustomers %}
+                        <option value={customerInfo['customerID']}}>{{customerInfo['Customer_Name']}}</option>
+                    {% endfor %}
+                </select>
 
                 <label for="insert_Date">Date:</label>
                 <input type="text" id="insert_Date" placeholder="Date... YYYY/MM/DD">

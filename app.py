@@ -79,17 +79,27 @@ def orders():
     
     # Retrieve results of query from the cursor
     saleOrdersResults = cur.fetchall()
-        
+    
     # Declare and execute query
-    query2 = """SELECT GameOrders.gameOrderID, Games.name, GameOrders.saleOrderID, GameOrders.discount
+    query2 = """SELECT customerID, CONCAT(first_name, ' ', last_name) AS Customer_Name
+            FROM Customers
+            ORDER BY last_name, first_name;"""
+    cur.execute(query2)
+    
+    orderedCustomers = cur.fetchall()
+    
+    print(orderedCustomers)
+    
+    # Declare and execute query
+    query3 = """SELECT GameOrders.gameOrderID, Games.name, GameOrders.saleOrderID, GameOrders.discount
             FROM GameOrders
             JOIN Games ON GameOrders.GameID = Games.GameID;"""
-    cur.execute(query2)
+    cur.execute(query3)
     
     gameOrdersResults = cur.fetchall()
 
     # Render the orders page, passing the query results
-    return render_template('orders.html', saleOrdersResults=saleOrdersResults, gameOrdersResults=gameOrdersResults)
+    return render_template('orders.html', saleOrdersResults=saleOrdersResults, orderedCustomers=orderedCustomers, gameOrdersResults=gameOrdersResults)
 
 # Listener
 if __name__ == "__main__":
