@@ -88,8 +88,6 @@ def orders():
     
     orderedCustomers = cur.fetchall()
     
-    print(orderedCustomers)
-    
     # Declare and execute query
     query3 = """SELECT GameOrders.gameOrderID, Games.name, GameOrders.saleOrderID, GameOrders.discount
             FROM GameOrders
