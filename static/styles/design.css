@@ -1,0 +1,37 @@
+html {
+    background-color:#202455
+}
+h1 {
+    background-color: #F3D9DC;
+    color: #9B3103;
+    font-weight: bold;
+    text-align: center;
+}
+h2 {
+    color: #34D1BF;
+    font-weight: bold;
+}
+table, th, td {
+    background-color: #F3D9DC;
+    color: #9B3103;
+    border: 1px solid;
+}
+
+form {
+    color: #34D1BF;
+    font-weight: bold;
+}
+
+.nav {
+    text-align: center;
+}
+
+a:link {
+  color: #34D1BF;
+  font-weight: bold;
+}
+
+a:visited {
+  color: #34D1BF;
+  font-weight: bold;
+}
