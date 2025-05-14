@@ -54,7 +54,10 @@ def reviews():
     cur = mysql.connection.cursor()
     
     # Declare and execute query
-    query1 = 'SELECT * FROM Reviews;'
+    query1 = """SELECT Reviews.reviewID, Games.name, Customers.first_name, Customers.last_name, Reviews.starRating, Reviews.content
+            FROM Reviews
+            JOIN Games ON Reviews.gameID = Games.gameID
+            JOIN Customers ON Reviews.customerID = Customers.customerID;""" 
     cur.execute(query1)
     
     # Retrieve results of query from the cursor

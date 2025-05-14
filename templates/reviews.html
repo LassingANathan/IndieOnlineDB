@@ -13,16 +13,16 @@
         <table>
             <tr>
                 <th>ReviewID</th>
-                <th>GameID</th>
-                <th>CustomerID</th>
+                <th>Game</th>
+                <th>Customer Name</th>
                 <th>StarRating</th>
                 <th>Content</th>
             </tr>
             {% for reviewInfo in results %}
                 <tr>
                     <td>{{reviewInfo['reviewID']}}</td>
-                    <td>{{reviewInfo['gameID']}}</td>
-                    <td>{{reviewInfo['customerID']}}</td>
+                    <td>{{reviewInfo['name']}}</td>
+                    <td>{{reviewInfo['first_name'] + ' ' + reviewInfo['last_name']}}</td>
                     <td>{{reviewInfo['starRating']}}</td>
                     <td>{{reviewInfo['content']}}</td>
                 </tr>
