@@ -1,16 +1,19 @@
 html {
     background-color:#202455
 }
+
 h1 {
     background-color: #F3D9DC;
     color: #9B3103;
     font-weight: bold;
     text-align: center;
 }
+
 h2 {
     color: #34D1BF;
     font-weight: bold;
 }
+
 table, th, td {
     background-color: #F3D9DC;
     color: #9B3103;
@@ -20,6 +23,11 @@ table, th, td {
 form {
     color: #34D1BF;
     font-weight: bold;
+    outline-style: solid;
+    outline-width: 4px;
+    outline-color: #34D1BF;
+    outline-offset: 4px;
+    display: inline-block /* Prevents forms from taking up the entire width of the window */
 }
 
 .nav {
