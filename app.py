@@ -24,7 +24,7 @@ def games():
     cur = mysql.connection.cursor()
     
     # Declare and execute query
-    query1 = 'SELECT * FROM Games;'
+    query1 = 'SELECT gameID, name, price FROM Games;'
     cur.execute(query1)
     
     # Retrieve results of query from the cursor
@@ -39,7 +39,7 @@ def customers():
     cur = mysql.connection.cursor()
     
     # Declare and execute query
-    query1 = 'SELECT * FROM Customers;'
+    query1 = 'SELECT customerID, first_name, last_name, email FROM Customers'
     cur.execute(query1)
     
     # Retrieve results of query from the cursor
@@ -54,10 +54,12 @@ def reviews():
     cur = mysql.connection.cursor()
     
     # Declare and execute query
-    query1 = """SELECT Reviews.reviewID, Games.name, Customers.first_name, Customers.last_name, Reviews.starRating, Reviews.content
-            FROM Reviews
-            JOIN Games ON Reviews.gameID = Games.gameID
-            JOIN Customers ON Reviews.customerID = Customers.customerID;""" 
+    query1 = """SELECT Reviews.reviewID AS ReviewID, Games.name AS Game,
+        CONCAT(Customers.first_name, ' ', Customers.last_name) AS Customer,
+        Reviews.starRating AS StarRating, Reviews.content AS Content
+        FROM Reviews
+        JOIN Games ON Reviews.gameID = Games.gameID
+        JOIN Customers ON Reviews.customerID = Customers.customerID;""" 
     cur.execute(query1)
     
     # Retrieve results of query from the cursor
@@ -72,9 +74,10 @@ def orders():
     cur = mysql.connection.cursor()
     
     # Declare and execute query
-    query1 = """SELECT SaleOrders.saleOrderID, Customers.first_name, Customers.last_name, SaleOrders.date
-            FROM SaleOrders
-            JOIN Customers ON SaleOrders.CustomerID = Customers.CustomerID;"""
+    query1 = """SELECT SaleOrders.saleOrderID AS SaleOrderID,
+        CONCAT(Customers.first_name, ' ', Customers.last_name) AS Customer,
+        DATE_FORMAT(SaleOrders.date, '%Y-%m-%d') AS Date FROM SaleOrders
+        JOIN Customers ON SaleOrders.customerID = Customers.customerID;"""
     cur.execute(query1)
     
     # Retrieve results of query from the cursor
@@ -111,4 +114,4 @@ def orders():
 if __name__ == "__main__":
 
     #Start the app to run on a port of your choosing
-    app.run(port=7909, debug=True)
+    app.run(port=7910, debug=True)

@@ -21,11 +21,11 @@
             </tr>
             {% for reviewInfo in results %}
                 <tr>
-                    <td>{{reviewInfo['reviewID']}}</td>
-                    <td>{{reviewInfo['name']}}</td>
-                    <td>{{reviewInfo['first_name'] + ' ' + reviewInfo['last_name']}}</td>
-                    <td>{{reviewInfo['starRating']}}</td>
-                    <td>{{reviewInfo['content']}}</td>
+                    <td>{{reviewInfo['ReviewID']}}</td>
+                    <td>{{reviewInfo['Game']}}</td>
+                    <td>{{reviewInfo['Customer']}}</td>
+                    <td>{{reviewInfo['StarRating']}}</td>
+                    <td>{{reviewInfo['Content']}}</td>
                 </tr>
             {% endfor %}
         </table>

@@ -20,9 +20,9 @@
                 </tr>
                 {% for saleOrderInfo in saleOrdersResults %}
                     <tr>
-                        <td>{{saleOrderInfo['saleOrderID']}}</td>
-                        <td>{{saleOrderInfo['first_name'] + ' ' + saleOrderInfo['last_name']}}</td>
-                        <td>{{saleOrderInfo['date']}}</td>
+                        <td>{{saleOrderInfo['SaleOrderID']}}</td>
+                        <td>{{saleOrderInfo['Customer']}}</td>
+                        <td>{{saleOrderInfo['Date']}}</td>
                     </tr>
                 {% endfor %}
             </table>
@@ -69,6 +69,7 @@
             <form>
                 <input type="submit" value="INSERT">
 
+                <label for="insert_GameID">Game:</label>
                 <select id="insert_GameID">
                     {% for gameInfo in orderedGames %}
                         <option value={gameInfo['gameID']}}>{{gameInfo['name']}}</option>
@@ -76,7 +77,11 @@
                 </select>
 
                 <label for="insert_SaleOrderID">SaleOrderID:</label>
-                <input type="text" id="insert_SaleOrderID" placeholder="SaleOrderID...">
+                <select id="insert_SaleOrderID">
+                    {% for saleOrderInfo in saleOrdersResults %}
+                        <option value={saleOrderInfo['SaleOrderID']}}>{{saleOrderInfo['SaleOrderID']}}</option>
+                    {% endfor %}
+                </select>
 
                 <label for="insert_Discount">Discount:</label>
                 <input type="text" id="insert_Discount" placeholder="Discount...">

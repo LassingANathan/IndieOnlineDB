@@ -45,10 +45,10 @@
     <form>
         <input type="submit" value="UPDATE">
 
-        <label for="update_GameID">GameID:</label>
+        <label for="update_GameID">Game:</label>
         <select id="update_GameID">
             {% for gameInfo in results %}
-                <option value={gameInfo['gameID']}}>{{gameInfo['gameID']}}</option>
+                <option value={gameInfo['gameID']}}>{{gameInfo['name']}}</option>
             {% endfor %}
         </select>
 
@@ -71,9 +71,10 @@
     <form>
         <input type="submit" value="DELETE">
 
+        <label for="delete_GameID">Game:</label>
         <select id="delete_GameID">
             {% for gameInfo in results %}
-                <option value={gameInfo['gameID']}}>{{gameInfo['gameID']}}</option>
+                <option value={gameInfo['gameID']}}>{{gameInfo['name']}}</option>
             {% endfor %}
         </select>
     </form>
