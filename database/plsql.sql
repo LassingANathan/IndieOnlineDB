@@ -128,3 +128,39 @@ BEGIN
 
 END //
 DELIMITER ;
+
+-- #############################
+-- DELETE game
+-- #############################
+DROP PROCEDURE IF EXISTS sp_DeleteGame;
+
+DELIMITER //
+CREATE PROCEDURE sp_DeleteGame(IN g_id INT)
+BEGIN
+
+    DECLARE error_message VARCHAR(255); 
+
+    -- error handling
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        -- Roll back the transaction on any error
+        ROLLBACK;
+        -- Propogate the custom error message to the caller
+        RESIGNAL;
+    END;
+
+    START TRANSACTION;
+        -- Delete the passed game
+        DELETE FROM Games WHERE id = g_id;
+
+        -- ROW_COUNT() returns the number of rows affected by the preceding statement.
+        IF ROW_COUNT() = 0 THEN
+            set error_message = CONCAT('No matching record found in Games for id: ', g_id);
+            -- Trigger custom error, invoke EXIT HANDLER
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
+        END IF;
+
+    COMMIT;
+
+END //
+DELIMITER ;
