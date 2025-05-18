@@ -105,13 +105,32 @@ def resetDB():
     dbConnection = db.connectDB()
     
     # Declare and execute query
-    query1 = "CALL sp_ResetDatabase"
+    query1 = "CALL sp_ResetDatabase;"
     db.query(dbConnection, query1)
     
     print("Reset!!!!")
     
     # Redirect the user to the updated webpage
     return redirect("/")
+
+# DELETE game request
+@app.route('/games/delete', methods=["POST"])
+def deleteGame():
+    # Connect to db, create cursor
+    dbConnection = db.connectDB()
+    
+    # Get data from form
+    gameID = request.form["delete_GameID"]
+    
+    # Declare and execute query
+    query1 = "CALL sp_DeleteGame(%s);"
+    db.query(dbConnection, query1, (gameID,))
+    
+    print("Deleted Game!!!")
+    
+    # Redirect the user to the updated webpage
+    return redirect("/")
+
 
 # Listener
 if __name__ == "__main__":

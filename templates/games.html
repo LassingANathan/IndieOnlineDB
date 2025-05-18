@@ -68,13 +68,13 @@
     <br> <br>
 
     <!-- DELETE form-->
-    <form>
+    <form method="POST" action="/games/delete">
         <input type="submit" value="DELETE a Game">
 
         <label for="delete_GameID">Game:</label>
-        <select id="delete_GameID">
+        <select id="delete_GameID" name="delete_GameID">
             {% for gameInfo in results %}
-                <option value={gameInfo['gameID']}}>{{gameInfo['name']}}</option>
+                <option value={{gameInfo['gameID']}}>{{gameInfo['name']}}</option>
             {% endfor %}
         </select>
     </form>
