@@ -150,8 +150,8 @@ BEGIN
     END;
 
     START TRANSACTION;
-        -- Delete the passed game
-        DELETE FROM Games WHERE id = g_id;
+        -- delete a game based on the gameID (M-to-M relationship deletion)
+        DELETE FROM Games WHERE gameID = g_id;
 
         -- ROW_COUNT() returns the number of rows affected by the preceding statement.
         IF ROW_COUNT() = 0 THEN
