@@ -30,6 +30,19 @@ form {
     display: inline-block /* Prevents forms from taking up the entire width of the window */
 }
 
+div.form
+{
+    display: block;
+    text-align: center;
+}
+form
+{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
 .nav {
     text-align: center;
 }

@@ -7,7 +7,7 @@ import database.db_connector as db
 PORT = 7910
 app = Flask(__name__)
 
-### GET Routes
+### GET routes
 # Homepage
 @app.route('/')
 def root():
@@ -95,6 +95,23 @@ def orders():
 
     # Render the orders page, passing the query results
     return render_template('orders.html', saleOrdersResults=saleOrdersResults, orderedCustomers=orderedCustomers, gameOrdersResults=gameOrdersResults, orderedGames=orderedGames)
+
+### POST routes
+
+# RESET request
+@app.route('/reset', methods=["POST"])
+def resetDB():
+    # Connect to db, create cursor
+    dbConnection = db.connectDB()
+    
+    # Declare and execute query
+    query1 = "CALL sp_ResetDatabase"
+    db.query(dbConnection, query1)
+    
+    print("Reset!!!!")
+    
+    # Redirect the user to the updated webpage
+    return redirect("/")
 
 # Listener
 if __name__ == "__main__":
