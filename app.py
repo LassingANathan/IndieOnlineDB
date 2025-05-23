@@ -1,3 +1,7 @@
+# The implementation of stored procedures is adapted from:
+# Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+# Accessed 5/22/2025
+
 from flask import Flask, render_template, json, redirect, url_for
 from flask_mysqldb import MySQL
 from flask import request

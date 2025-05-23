@@ -1,3 +1,7 @@
+# Entire file based on:
+# Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2
+# Acccessed 5/22/2025
+
 import MySQLdb
 
 # Database credentials
