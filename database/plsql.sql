@@ -107,6 +107,40 @@ BEGIN
 END //
 DELIMITER ;
 
+-- INSERT gameOrder
+DROP PROCEDURE IF EXISTS sp_InsertGameOrder;
+DELIMITER //
+CREATE PROCEDURE sp_InsertGameOrder(IN game_id INT, IN so_id INT, IN discount DECIMAL(8,2))
+BEGIN
+
+    DECLARE error_message VARCHAR(255); 
+
+    -- error handling
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        -- Roll back the transaction on any error
+        ROLLBACK;
+        -- Propogate the custom error message to the caller
+        RESIGNAL;
+    END;
+
+    START TRANSACTION;
+        -- Insert a new gameorder
+        INSERT INTO GameOrders (gameID, saleOrderID, discount) VALUES 
+            (game_id, so_id, discount);
+
+        -- ROW_COUNT() returns the number of rows affected by the preceding statement.
+        IF ROW_COUNT() = 0 THEN
+            set error_message = CONCAT('GameOrder could not be added.');
+            -- Trigger custom error, invoke EXIT HANDLER
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
+        END IF;
+
+    COMMIT;
+
+END //
+DELIMITER ;
+
 -- #######################
 -- UPDATE OPERATIONS
 -- #######################
@@ -168,6 +202,40 @@ BEGIN
         -- ROW_COUNT() returns the number of rows affected by the preceding statement.
         IF ROW_COUNT() = 0 THEN
             set error_message = CONCAT('Game could not be updated.');
+            -- Trigger custom error, invoke EXIT HANDLER
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
+        END IF;
+
+    COMMIT;
+
+END //
+DELIMITER ;
+
+-- UPDATE GameOrder
+DROP PROCEDURE IF EXISTS sp_UpdateGameOrder;
+DELIMITER //
+CREATE PROCEDURE sp_UpdateGameOrder(IN go_id INT, IN game_id INT, IN discount DECIMAL(8,2))
+BEGIN
+
+    DECLARE error_message VARCHAR(255); 
+
+    -- error handling
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        -- Roll back the transaction on any error
+        ROLLBACK;
+        -- Propogate the custom error message to the caller
+        RESIGNAL;
+    END;
+
+    START TRANSACTION;
+        -- Update the GameOrder
+        UPDATE GameOrders SET gameID = game_id, discount = discount
+        WHERE gameOrderID = go_id;
+
+        -- ROW_COUNT() returns the number of rows affected by the preceding statement.
+        IF ROW_COUNT() = 0 THEN
+            set error_message = CONCAT('GameOrder could not be updated.');
             -- Trigger custom error, invoke EXIT HANDLER
             SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
         END IF;
@@ -284,7 +352,7 @@ BEGIN
         saleOrderID INT NOT NULL,
         discount DECIMAL(8,2) NOT NULL,
         
-        FOREIGN KEY (gameID) REFERENCES Games(gameID) ON DELETE CASCADE,
+        FOREIGN KEY (gameID) REFERENCES Games(gameID) ON UPDATE CASCADE ON DELETE CASCADE,
         FOREIGN KEY (saleOrderID) REFERENCES SaleOrders(saleOrderID),
         PRIMARY KEY (gameOrderID)
     );

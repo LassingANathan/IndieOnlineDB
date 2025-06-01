@@ -76,6 +76,7 @@ def orders():
     # Retrieve results of query from the cursor
     saleOrdersResults = db.query(dbConnection, query1).fetchall()
     
+    
     # Declare and execute query
     query2 = """SELECT customerID, CONCAT(first_name, ' ', last_name) AS Customer_Name
             FROM Customers
@@ -91,7 +92,7 @@ def orders():
     gameOrdersResults = db.query(dbConnection, query3).fetchall()
     
     # Declare and execute query
-    query4 = """SELECT GameID, name
+    query4 = """SELECT gameID, name
             FROM Games
             ORDER BY name;"""
     
@@ -186,6 +187,41 @@ def insertSaleOrder():
     query1 = "CALL sp_InsertSaleOrder(%s, %s);"
     db.query(dbConnection, query1, (customerID, date))
 
+    # Redirect the user to the updated webpage
+    return redirect("/orders")
+
+# INSERT GameOrder request
+@app.route('/orders/insertGameOrder', methods=["POST"])
+def insertGameOrder():
+    # Connect to db, create cursor
+    dbConnection = db.connectDB()
+    
+    # Get data from form
+    gameID = request.form["insert_GameID"]
+    saleOrderID = request.form["insert_SaleOrderID"]
+    discount = request.form["insert_Discount"]
+    
+    # Declare and execute query
+    query1 = "CALL sp_InsertGameOrder(%s, %s, %s);"
+    db.query(dbConnection, query1, (gameID, saleOrderID, discount))
+
+    # Redirect the user to the updated webpage
+    return redirect("/orders")
+
+# UPDATE gameOrder request
+@app.route('/orders/updateGameOrder', methods=["POST"])
+def updateGameOrder():
+    # Connect to db, create cursor
+    dbConnection = db.connectDB()
+    
+    # Get data from form
+    gameOrderID = request.form["update_GameOrderID"]
+    gameID = request.form["update_NewGameID"]
+    newDiscount = request.form["update_NewDiscount"]
+    
+    query1 = "CALL sp_UpdateGameOrder(%s, %s, %s);"
+    db.query(dbConnection, query1, (gameOrderID, gameID, newDiscount))
+    
     # Redirect the user to the updated webpage
     return redirect("/orders")
 
