@@ -1,4 +1,4 @@
-# The implementation of stored procedures is adapted from:
+# The implementation of stored procedures, and general file/folder layout, is adapted from:
 # Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
 # Accessed 5/22/2025
 
@@ -130,10 +130,8 @@ def deleteGame():
     query1 = "CALL sp_DeleteGame(%s);"
     db.query(dbConnection, query1, (gameID,))
     
-    print("Deleted Game!!!")
-    
     # Redirect the user to the updated webpage
-    return redirect("/")
+    return redirect("/games")
 
 
 # Listener
