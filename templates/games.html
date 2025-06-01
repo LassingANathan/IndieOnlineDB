@@ -29,14 +29,14 @@
     <br>
 
     <!-- INSERT form -->
-    <form>
+    <form method="POST" action="/games/update">
         <input type="submit" value="INSERT a New Game">
 
         <label for="insert_Name">Name:</label>
-        <input type="text" id="insert_Name" placeholder="Name...">
+        <input type="text" id="insert_Name" name="insert_Name" placeholder="Name...">
 
         <label for="insert_Price">Price:</label>
-        <input type="text" id="insert_Price" placeholder="Price...">
+        <input type="text" id="insert_Price" name="insert_Price" placeholder="Price...">
     </form>
 
     <br> <br>

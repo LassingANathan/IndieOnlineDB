@@ -133,6 +133,24 @@ def deleteGame():
     # Redirect the user to the updated webpage
     return redirect("/games")
 
+# INSERT game request
+@app.route('/games/update', methods=["POST"])
+def insertGame():
+    # Connect to db, create cursor
+    dbConnection = db.connectDB()
+    
+    # Get data from form
+    gameName = request.form["insert_Name"]
+    gamePrice = request.form["insert_Price"]
+    
+    print(type(gamePrice))
+    
+    # Declare and execute query
+    query1 = "CALL sp_InsertGame(%s, %s);"
+    db.query(dbConnection, query1, (gameName, gamePrice))
+    
+    # Redirect the user to the updated webpage
+    return redirect("/games")
 
 # Listener
 if __name__ == "__main__":
