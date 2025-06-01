@@ -172,6 +172,23 @@ def updateGame():
     # Redirect the user to the updated webpage
     return redirect("/games")
 
+# INSERT SaleOrder request
+@app.route('/orders/insertSaleOrder', methods=["POST"])
+def insertSaleOrder():
+    # Connect to db, create cursor
+    dbConnection = db.connectDB()
+    
+    # Get data from form
+    customerID = request.form["insert_CustomerID"]
+    date = request.form["insert_Date"]
+    
+    # Declare and execute query
+    query1 = "CALL sp_InsertSaleOrder(%s, %s);"
+    db.query(dbConnection, query1, (customerID, date))
+
+    # Redirect the user to the updated webpage
+    return redirect("/orders")
+
 # Listener
 if __name__ == "__main__":
 

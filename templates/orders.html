@@ -30,17 +30,17 @@
             <br>
 
             <!-- INSERT form -->
-            <form>
+            <form method="POST" action="/orders/insertSaleOrder">
                 <input type="submit" value="INSERT a SaleOrder">
 
-                <select id="insert_CustomerID">
+                <select id="insert_CustomerID" name="insert_CustomerID">
                     {% for customerInfo in orderedCustomers %}
-                        <option value={customerInfo['customerID']}}>{{customerInfo['Customer_Name']}}</option>
+                        <option value={{customerInfo['customerID']}}>{{customerInfo['Customer_Name']}}</option>
                     {% endfor %}
                 </select>
 
                 <label for="insert_Date">Date:</label>
-                <input type="text" id="insert_Date" placeholder="Date... YYYY/MM/DD">
+                <input type="text" id="insert_Date" name="insert_Date" placeholder="Date... YYYY/MM/DD">
             </form>
         </div>
         
