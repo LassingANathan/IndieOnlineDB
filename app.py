@@ -134,7 +134,7 @@ def deleteGame():
     return redirect("/games")
 
 # INSERT game request
-@app.route('/games/update', methods=["POST"])
+@app.route('/games/insert', methods=["POST"])
 def insertGame():
     # Connect to db, create cursor
     dbConnection = db.connectDB()
