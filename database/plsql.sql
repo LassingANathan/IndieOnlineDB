@@ -44,7 +44,7 @@ DELIMITER ;
 -- INSERT game
 DROP PROCEDURE IF EXISTS sp_InsertGame;
 DELIMITER //
-CREATE PROCEDURE sp_InsertGame(IN g_name VARCHAR(255), IN g_price DECIMAL(16,2))
+CREATE PROCEDURE sp_InsertGame(IN g_name VARCHAR(45), IN g_price DECIMAL(16,2))
 BEGIN
 
     DECLARE error_message VARCHAR(255); 
@@ -77,6 +77,72 @@ DELIMITER ;
 -- #######################
 -- UPDATE OPERATIONS
 -- #######################
+
+-- UPDATE game name
+DROP PROCEDURE IF EXISTS sp_UpdateGameName;
+DELIMITER //
+CREATE PROCEDURE sp_UpdateGameName(IN g_id INT, IN g_name VARCHAR(45))
+BEGIN
+
+    DECLARE error_message VARCHAR(255); 
+
+    -- error handling
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        -- Roll back the transaction on any error
+        ROLLBACK;
+        -- Propogate the custom error message to the caller
+        RESIGNAL;
+    END;
+
+    START TRANSACTION;
+        -- Update the game
+        UPDATE Games SET name = g_name WHERE gameID = g_id;
+
+        -- ROW_COUNT() returns the number of rows affected by the preceding statement.
+        IF ROW_COUNT() = 0 THEN
+            set error_message = CONCAT('Game could not be updated.');
+            -- Trigger custom error, invoke EXIT HANDLER
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
+        END IF;
+
+    COMMIT;
+
+END //
+DELIMITER ;
+
+-- UPDATE game price
+DROP PROCEDURE IF EXISTS sp_UpdateGamePrice;
+DELIMITER //
+CREATE PROCEDURE sp_UpdateGamePrice(IN g_id INT, IN g_price DECIMAL(16,2))
+BEGIN
+
+    DECLARE error_message VARCHAR(255); 
+
+    -- error handling
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        -- Roll back the transaction on any error
+        ROLLBACK;
+        -- Propogate the custom error message to the caller
+        RESIGNAL;
+    END;
+
+    START TRANSACTION;
+        -- Update the game
+        UPDATE Games SET price = g_price WHERE gameID = g_id;
+
+        -- ROW_COUNT() returns the number of rows affected by the preceding statement.
+        IF ROW_COUNT() = 0 THEN
+            set error_message = CONCAT('Game could not be updated.');
+            -- Trigger custom error, invoke EXIT HANDLER
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
+        END IF;
+
+    COMMIT;
+
+END //
+DELIMITER ;
 
 -- #######################
 -- OTHER OPERATIONS

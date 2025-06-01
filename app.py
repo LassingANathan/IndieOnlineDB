@@ -112,8 +112,6 @@ def resetDB():
     query1 = "CALL sp_ResetDatabase;"
     db.query(dbConnection, query1)
     
-    print("Reset!!!!")
-    
     # Redirect the user to the updated webpage
     return redirect("/")
 
@@ -143,11 +141,33 @@ def insertGame():
     gameName = request.form["insert_Name"]
     gamePrice = request.form["insert_Price"]
     
-    print(type(gamePrice))
-    
     # Declare and execute query
     query1 = "CALL sp_InsertGame(%s, %s);"
     db.query(dbConnection, query1, (gameName, gamePrice))
+    
+    # Redirect the user to the updated webpage
+    return redirect("/games")
+
+# UPDATE game request
+@app.route('/games/update', methods=["POST"])
+def updateGame():
+    # Connect to db, create cursor
+    dbConnection = db.connectDB()
+    
+    # Get data from form
+    gameID = request.form["update_GameID"]
+    gameAttribute = request.form["update_Attribute"]
+    gameNewValue = request.form["update_NewValue"]
+    
+    # Determine what we're updating
+    if gameAttribute == "name":
+        # Declare and execute query
+        query1 = "CALL sp_UpdateGameName(%s, %s);"
+        db.query(dbConnection, query1, (gameID, gameNewValue))
+    elif gameAttribute == "price":
+        # Declare and execute query
+        query1 = "CALL sp_UpdateGamePrice(%s, %s);"
+        db.query(dbConnection, query1, (gameID, gameNewValue))
     
     # Redirect the user to the updated webpage
     return redirect("/games")

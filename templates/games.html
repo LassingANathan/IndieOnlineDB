@@ -42,18 +42,18 @@
     <br> <br>
 
     <!-- UPDATE form-->
-    <form>
+    <form method="POST" action="/games/update">
         <input type="submit" value="UPDATE a Game">
 
         <label for="update_GameID">Game:</label>
-        <select id="update_GameID">
+        <select id="update_GameID" name="update_GameID">
             {% for gameInfo in results %}
-                <option value={gameInfo['gameID']}}>{{gameInfo['name']}}</option>
+                <option value={{gameInfo['gameID']}}>{{gameInfo['name']}}</option>
             {% endfor %}
         </select>
 
-        <label for="update_Attributes">Attribute:</label>
-        <select id="update_Attributes">
+        <label for="update_Attribute">Attribute:</label>
+        <select id="update_Attribute" name="update_Attribute">
             {% for attribute in results[0].keys() %}
                 {% if not loop.first %} {# Skip the first attribute (gameID)#}
                     <option value={{attribute}}>{{attribute}}</option>
@@ -62,7 +62,7 @@
         </select>
 
         <label for="update_NewValue">New Value:</label>
-        <input type="text" id="update_NewValue" placeholder="New Value...">
+        <input type="text" id="update_NewValue" name="update_NewValue" placeholder="New Value...">
     </form>
 
     <br> <br>
