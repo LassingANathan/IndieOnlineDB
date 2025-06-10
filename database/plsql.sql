@@ -1,3 +1,7 @@
+-- The implementation of stored procedures, and general file/folder layout, is adapted from:
+-- Source URL: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+-- Accessed 5/22/2025
+
 USE cs340_lassingn;
 
 -- #######################
